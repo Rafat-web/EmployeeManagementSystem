@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Profile</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Admin Profile</h2>
+
+        <p>Username: <strong>{{ username }}</strong></p>
+
+        {% with messages = get_flashed_messages() %}
+            {% for message in messages %}
+                <div class="flash-message">{{ message }}</div>
+            {% endfor %}
+        {% endwith %}
+
+        <h3>Change Password</h3>
+
+        <form action="{{ url_for('profile') }}" method="POST">
+
+            <label>Current Password</label>
+            <input type="password" name="current_password" required>
+
+            <label>New Password</label>
+            <input type="password" name="new_password"
+                   minlength="8" required>
+
+            <label>Confirm New Password</label>
+            <input type="password" name="confirm_password"
+                   minlength="8" required>
+
+            <button type="submit">Update Password</button>
+        </form>
+
+        <p>
+            <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+        </p>
+    </div>
+
+</body>
+</html>

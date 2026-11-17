@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard | Employee Management</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="dashboard-page">
+
+    <div class="dashboard-layout">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+
+            <div class="sidebar-brand">
+                <h2>EMS</h2>
+                <p>Employee Management</p>
+            </div>
+
+            <nav class="sidebar-nav">
+
+                <a href="{{ url_for('dashboard') }}" class="active">
+                    Dashboard
+                </a>
+
+                <a href="{{ url_for('employees') }}">
+                    Manage Employees
+                </a>
+
+                <a href="{{ url_for('profile') }}">
+                    My Profile
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+                <form action="{{ url_for('logout') }}" method="POST">
+                    <button type="submit" class="logout-btn">
+                        Logout
+                    </button>
+                </form>
+            </div>
+
+        </aside>
+
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+
+            <header class="dashboard-header">
+                <div>
+                    <h1>Dashboard</h1>
+                    <p>Welcome to your Employee Management System</p>
+                </div>
+
+                <div class="admin-info">
+                    <span>Administrator</span>
+                </div>
+            </header>
+
+
+            <!-- Welcome Section -->
+            <section class="welcome-section">
+                <h2>Welcome Back, Admin!</h2>
+                <p>Here's an overview of your employee information.</p>
+            </section>
+
+
+            <!-- Statistics Cards -->
+            <section class="dashboard-cards">
+
+                <div class="dashboard-card">
+                    <p>Total Employees</p>
+                    <h2>{{ total_employees }}</h2>
+                    <span>Employees registered</span>
+                </div>
+
+                <div class="dashboard-card">
+                    <p>Total Departments</p>
+                    <h2>{{ total_departments }}</h2>
+                    <span>Active departments in records</span>
+                </div>
+
+                <div class="dashboard-card">
+                    <p>Total Salary</p>
+                    <h2>₹ {{ "%.2f"|format(total_salary) }}</h2>
+                    <span>Combined employee salary</span>
+                </div>
+
+            </section>
+
+
+            <!-- Recent Employees -->
+            <section class="recent-employees">
+
+                <div class="section-heading">
+                    <div>
+                        <h2>Recent Employees</h2>
+                        <p>Recently added employee records</p>
+                    </div>
+
+                    <a href="{{ url_for('employees') }}" class="view-all-btn">
+                        View All Employees
+                    </a>
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Employee Name</th>
+                                <th>Department</th>
+                                <th>Designation</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            {% for employee in recent_employees %}
+
+                            <tr>
+                                <td>{{ employee.id }}</td>
+                                <td>{{ employee.name }}</td>
+                                <td>{{ employee.department }}</td>
+                                <td>{{ employee.designation }}</td>
+                            </tr>
+
+                            {% else %}
+
+                            <tr>
+                                <td colspan="4" class="empty-message">
+                                    No employees found.
+                                </td>
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</body>
+</html>

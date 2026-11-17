@@ -1,0 +1,20 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Employee Management System</h1>
+        <p>Manage your employees easily and efficiently.</p>
+
+        <a href="{{ url_for('employees') }}" class="btn">
+            Manage Employees
+        </a>
+    </div>
+
+</body>
+</html>
