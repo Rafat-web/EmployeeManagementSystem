@@ -19,6 +19,15 @@ A web-based Employee Management System developed using Python Flask, MySQL, HTML
 - Duplicate Email Prevention
 - MySQL Database Integration
 
+## Screenshots
+
+### Admin Dashboard
+![Dashboard](screenshots/dashboard.png)
+
+### Manage Employees
+![Manage Employees](screenshots/createEmploye.png)
+![Manage Employees](screenshots/employees.png)
+
 ## Technologies Used
 
 **Frontend:** HTML, CSS, JavaScript
